@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulk Certificate Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="container">
+        <h1>Bulk Certificate Generator</h1>
+
+        <!-- Generation Card -->
+        <section class="card">
+            <h2>Generate Certificates</h2>
+
+            <form id="certificate-form">
+                <div class="form-group">
+                    <label for="title">Certificate Title</label>
+                    <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        maxlength="200"
+                        required
+                        placeholder="e.g. FastAPI Backend Development Workshop"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="default_date">Default Date</label>
+                    <input
+                        id="default_date"
+                        name="default_date"
+                        type="date"
+                    />
+                    <p class="hint">Optional if every CSV row already contains a date.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="file">CSV File</label>
+                    <input
+                        id="file"
+                        name="file"
+                        type="file"
+                        accept=".csv,text/csv"
+                        required
+                    />
+                    <p class="hint">
+                        CSV must have columns: <strong>Candidate Name</strong> and <strong>Date</strong>.
+                        <br />
+                        Title limit: 200 chars. Candidate name limit: 40 chars.
+                    </p>
+                </div>
+
+                <button id="generate-btn" type="submit" class="btn primary">
+                    Generate Certificates
+                </button>
+            </form>
+
+            <div id="status" class="status" aria-live="polite"></div>
+        </section>
+
+        <!-- Verification Card -->
+        <section class="card">
+            <h2>Verify Certificate</h2>
+
+            <form id="verify-form">
+                <div class="form-group">
+                    <label for="verify-value">
+                        Certificate ID / Scanned QR Value / Verify URL
+                    </label>
+                    <input
+                        id="verify-value"
+                        type="text"
+                        required
+                        placeholder="Paste certificate UUID or verification URL"
+                    />
+                </div>
+
+                <button type="submit" class="btn secondary">Verify</button>
+            </form>
+
+            <pre id="verify-result" class="result"></pre>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
